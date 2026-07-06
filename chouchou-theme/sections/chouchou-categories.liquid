@@ -1,0 +1,138 @@
+<style>
+  .chouchou-categories-wrapper {
+    padding: 80px 5%;
+    background-color: var(--color-base-background-1);
+    text-align: center;
+  }
+  .chouchou-cat-header {
+    margin-bottom: 50px;
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+  .chouchou-cat-grid {
+    display: flex;
+    justify-content: center;
+    gap: 4vw;
+    flex-wrap: wrap;
+  }
+  .chouchou-cat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    width: 250px;
+  }
+  .chouchou-cat-image-wrap {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 1px solid var(--color-base-accent-2);
+    transition: transform 0.4s ease;
+  }
+  .chouchou-cat-item:hover .chouchou-cat-image-wrap {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(74, 64, 54, 0.1);
+  }
+  .chouchou-cat-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+  .chouchou-cat-item:hover .chouchou-cat-image-wrap img {
+    transform: scale(1.05);
+  }
+  .chouchou-cat-title {
+    font-family: var(--font-heading-family);
+    font-size: 1.5rem;
+    color: var(--color-base-text);
+    margin: 0 0 5px 0;
+  }
+  .chouchou-cat-subtitle {
+    font-size: 0.95rem;
+    color: var(--color-base-text-opacity-85);
+    font-style: italic;
+  }
+  @media screen and (max-width: 768px) {
+    .chouchou-categories-wrapper { padding: 50px 20px; }
+    .chouchou-cat-image-wrap { width: 160px; height: 160px; }
+    .chouchou-cat-item { width: 45%; min-width: 150px; }
+    .chouchou-cat-grid { gap: 20px; }
+  }
+</style>
+
+<div class="chouchou-categories-wrapper">
+  <h2 class="chouchou-cat-header">{{ section.settings.heading }}</h2>
+  <div class="chouchou-cat-grid">
+    {%- for block in section.blocks -%}
+      <a href="{{ block.settings.link }}" class="chouchou-cat-item" {{ block.shopify_attributes }}>
+        <div class="chouchou-cat-image-wrap">
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy' }}
+          {%- else -%}
+            {{ 'product-apparel-1' | placeholder_svg_tag }}
+          {%- endif -%}
+        </div>
+        <h3 class="chouchou-cat-title">{{ block.settings.title }}</h3>
+        <span class="chouchou-cat-subtitle">{{ block.settings.subtitle }}</span>
+      </a>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "ChouChou Categories",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Shop by Lifestyle",
+      "label": "Section Heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category Item",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Category Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "La Promenade",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "default": "Walk & Travel",
+          "label": "Subtitle"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Category Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ChouChou Categories",
+      "blocks": [
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" }
+      ]
+    }
+  ]
+}
+{% endschema %}
