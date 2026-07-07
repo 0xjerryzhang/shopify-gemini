@@ -1,39 +1,58 @@
-/* ==========================================================================
-CHOUCHOU BRAND DESIGN SYSTEM - GLOBAL VARIABLES
-========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500&display=swap');
-
-:root {
---color-base-background-1: #FAF8F5;
---color-base-background-2: #F0EAE1;
---color-base-accent-1: #B99C85;
-
---color-base-accent-2: #E5DCD0;
-
---color-base-text: #4A4036;
-
---color-base-text-opacity-85: rgba(74, 64, 54, 0.85);
-
---font-heading-family: 'Playfair Display', serif;
---font-body-family: 'DM Sans', sans-serif;
---buttons-radius: 12px;
+{
+"sections": {
+"chouchou_hero": {
+"type": "chouchou-hero"
+},
+"chouchou_categories": {
+"type": "chouchou-categories",
+"blocks": {
+"category_1": {
+"type": "category",
+"settings": {
+"title": "La Mode",
+"subtitle": "衣 · Style & Accessories",
+"fallback_image_url": "https://images.unsplash.com/photo-1537151608804-ea2f1c841cb7?q=80&w=800&auto=format&fit=crop"
 }
-
-body {
-font-family: var(--font-body-family) !important;
-background-color: var(--color-base-background-1) !important;
-color: var(--color-base-text) !important;
+},
+"category_2": {
+"type": "category",
+"settings": {
+"title": "Le Repas",
+"subtitle": "食 · Bowls & Dining",
+"fallback_image_url": "https://images.unsplash.com/photo-1583337260546-28b6bbec8da4?q=80&w=800&auto=format&fit=crop"
 }
-
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-font-family: var(--font-heading-family) !important;
-color: var(--color-base-text) !important;
-letter-spacing: -0.02em !important;
+},
+"category_3": {
+"type": "category",
+"settings": {
+"title": "La Maison",
+"subtitle": "住 · Beds & Living",
+"fallback_image_url": "https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=800&auto=format&fit=crop"
 }
-
-.button, .btn {
-background-color: var(--color-base-accent-1) !important;
-color: #ffffff !important;
-border-radius: var(--buttons-radius) !important;
-border: none !important;
+},
+"category_4": {
+"type": "category",
+"settings": {
+"title": "La Promenade",
+"subtitle": "行 · Walk & Travel",
+"fallback_image_url": "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=800&auto=format&fit=crop"
+}
+}
+},
+"block_order": [
+"category_1",
+"category_2",
+"category_3",
+"category_4"
+]
+},
+"chouchou_story": {
+"type": "chouchou-story"
+}
+},
+"order": [
+"chouchou_hero",
+"chouchou_categories",
+"chouchou_story"
+]
 }
